@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC1236BD1BC395290016195C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC1236BC1BC395290016195C /* main.cpp */; };
+		FC1236C71BC395690016195C /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC1236C31BC395690016195C /* Player.cpp */; };
+		FC1236C81BC395690016195C /* SpinningWheel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC1236C51BC395690016195C /* SpinningWheel.cpp */; };
+		FC1236CA1BC395870016195C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC1236C91BC395870016195C /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +26,11 @@
 
 /* Begin PBXFileReference section */
 		FC1236B91BC395290016195C /* CS110C_Lab2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CS110C_Lab2; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC1236BC1BC395290016195C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		FC1236C31BC395690016195C /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		FC1236C41BC395690016195C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		FC1236C51BC395690016195C /* SpinningWheel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpinningWheel.cpp; sourceTree = "<group>"; };
+		FC1236C61BC395690016195C /* SpinningWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningWheel.h; sourceTree = "<group>"; };
+		FC1236C91BC395870016195C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +63,11 @@
 		FC1236BB1BC395290016195C /* CS110C_Lab2 */ = {
 			isa = PBXGroup;
 			children = (
-				FC1236BC1BC395290016195C /* main.cpp */,
+				FC1236C91BC395870016195C /* main.cpp */,
+				FC1236C31BC395690016195C /* Player.cpp */,
+				FC1236C41BC395690016195C /* Player.h */,
+				FC1236C51BC395690016195C /* SpinningWheel.cpp */,
+				FC1236C61BC395690016195C /* SpinningWheel.h */,
 			);
 			path = CS110C_Lab2;
 			sourceTree = "<group>";
@@ -118,7 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC1236BD1BC395290016195C /* main.cpp in Sources */,
+				FC1236C71BC395690016195C /* Player.cpp in Sources */,
+				FC1236C81BC395690016195C /* SpinningWheel.cpp in Sources */,
+				FC1236CA1BC395870016195C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
