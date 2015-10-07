@@ -14,78 +14,85 @@ using namespace std;
 
 // function prototypes
 bool spinAgain();
-void spinWheel(Player,SpinningWheel,int);
-char playGame(Player[],SpinningWheel,const int);
+char playGame();
 
 
 int main() {
   
-  const int NUM_PLAYERS = 3;   // number of players
-  Player players[NUM_PLAYERS]; // array of players
-  char choice;                 // continue gameplay
-  SpinningWheel gamewheel;
   cout << "Game Show";
+  char choice; // continue gameplay
   
   do
   {
-    choice = playGame(players,gamewheel,NUM_PLAYERS);
+    choice = playGame();
   } while(tolower(choice) == 'y');
   
   cout << "Thanks for playing!";
   
     return 0;
 }
-//
-//
-//
-char playGame(Player players[],SpinningWheel gamewheel, const int length)
+// play game
+// pre: none
+// post: return decision to play again
+char playGame()
 {
-  char choice;    // continue gameplay
+  const int NUM_PLAYERS = 3;   // number of players
+  Player players[NUM_PLAYERS]; // array of players
+  char choice;                 // continue gameplay
+  SpinningWheel gamewheel;
   
   // spin wheel for each player
-  for(int i = 0;i < length;i++)
+  for(int i = 0;i < NUM_PLAYERS;i++)
   {
-    spinWheel(players[i],gamewheel,i+1);
+    cout << "\nPlayer " << i+1 << endl;
+    
+    cout << "First Spin: \t";
+    players[i].spin(gamewheel);
+    cout << "\nPoints so far:  " << players[i].totalPoints();
+  
+    // skip for third player if first two players go over 100
+    if(players[0].totalPoints() > 100 && players[1].totalPoints() > 100);
+    
+    else if(spinAgain())
+    {
+      cout << "Second Spin: \t";
+      players[i].spin(gamewheel);
+      // test if total points is over 100
+      if(players[i].totalPoints() > 100)
+      {
+        cout << "\nTotal Points: Over 100";
+        
+      }
+      else
+        cout << "\nTotal Points:  " << players[i].totalPoints();
+    }
   }
   
   // pick game winner
+  int winner = 0;
+  int max = players[0].totalPoints();    // first player gets max value
+  // find which player has the most points
+  for(int i = 1; i < NUM_PLAYERS; i++)
+   {
+     if(players[i].totalPoints() > max)
+     {
+       max = players[i].totalPoints();
+     }
+   }
+  
+  cout << "\nPlayer " << winner << " wins!\n";
   
   do
   {
-  cout << "\nWould you like to play again? (y/n): ";
-  cin >> choice;
+    cout << "Would you like to play again? (y/n): ";
+    cin >> choice;
   } while(tolower(choice) != 'y' && tolower(choice) != 'n');
   
   return tolower(choice);
 }
-//
-//
-//
-void spinWheel(Player player,SpinningWheel wheel,int num)
-{
-  cout << "\nPlayer " << num << endl;
-
-  cout << "First Spin: \t";
-  player.spin(wheel);
-  cout << "\nPoints so far:  " << player.totalPoints();
-  
-  if(spinAgain())
-  {
-    cout << "Second Spin: \t";
-    player.spin(wheel);
-    // test if total points is over 100
-    if(player.totalPoints() > 100)
-    {
-      cout << "\nTotal Points: Over 100";
-
-    }
-    else
-      cout << "\nTotal Points:  " << player.totalPoints();
-  }
-}
-//
-//
-//
+// check if player would like to spin again
+// pre: none
+// post: true or false
 bool spinAgain()
 {
   char choice;
