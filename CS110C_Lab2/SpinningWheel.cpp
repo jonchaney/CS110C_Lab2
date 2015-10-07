@@ -39,14 +39,22 @@ int SpinningWheel::spin()
   
   int randNum = getRand(22,42);   // get random number between 22 and 42
   int finalNum = 0;               // value that wheel ends on
+  int count = 0;                  // create new line after 20 values printed
   
   while(index < randNum)
   {
     cout << values[index % NUM_VALUES] << " ";
     finalNum = values[index % NUM_VALUES];
     index++;
+    count++;
+    
+    // print value in correct format
+    if(count%20==0)
+    {
+      cout << endl;
+      cout << "\t\t\t\t";
+    }
   }
-  
   index = index % NUM_VALUES; // update index
   
   return finalNum;
