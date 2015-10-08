@@ -8,6 +8,7 @@
 
 #include "SpinningWheel.h"
 #include <iostream>
+#include <stdlib.h>
 #include <ctime>
 
 SpinningWheel::SpinningWheel() : index(0)
@@ -49,7 +50,7 @@ int SpinningWheel::spin()
     count++;
     
     // print value in correct format
-    if(count%20==0)
+    if(index % NUM_VALUES==0)
     {
       cout << endl;
       cout << "\t\t\t\t";

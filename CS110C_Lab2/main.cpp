@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include <cctype>     // for function tolower
+#include <cctype>     // for tolower()
 #include "Player.h"
 #include "SpinningWheel.h"
 using namespace std;
@@ -15,7 +15,6 @@ using namespace std;
 // function prototypes
 bool spinAgain();
 char playGame();
-
 
 int main() {
   
@@ -52,7 +51,6 @@ char playGame()
   
     // skip for third player if first two players go over 100
     if(players[0].totalPoints() > 100 && players[1].totalPoints() > 100);
-    
     else if(spinAgain())
     {
       cout << "Second Spin: \t";
@@ -64,12 +62,11 @@ char playGame()
         
       }
       else
-        cout << "\nTotal Points:  " << players[i].totalPoints();
+        cout << "\nTotal Points:  " << players[i].totalPoints() << endl;
     }
   }
   
-  // pick game winner
-  int winner = 0;
+  // find game winner
   int max = players[0].totalPoints();    // first player gets max value
   // find which player has the most points
   for(int i = 1; i < NUM_PLAYERS; i++)
@@ -80,11 +77,16 @@ char playGame()
      }
    }
   
-  cout << "\nPlayer " << winner << " wins!\n";
+  // print winner of game
+  for(int i = 0; i < NUM_PLAYERS; i++)
+  {
+    if(players[i].totalPoints() == max)
+      cout << "\nPlayer " << i+1 << " wins!";
+  }
   
   do
   {
-    cout << "Would you like to play again? (y/n): ";
+    cout << "\nPlay again? (y/n): ";
     cin >> choice;
   } while(tolower(choice) != 'y' && tolower(choice) != 'n');
   
@@ -107,6 +109,5 @@ bool spinAgain()
   if(tolower(choice) == 'y')
     status = true;
   
-  return status;
+    return status;
 }
-
