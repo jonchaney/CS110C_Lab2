@@ -3,8 +3,6 @@
 //  lab2
 //
 //  Created by Jon Chaney on 9/21/15.
-//  Copyright (c) 2015 Jon Chaney. All rights reserved.
-//
 
 #ifndef __lab2__Player__
 #define __lab2__Player__

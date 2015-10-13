@@ -3,8 +3,6 @@
 //  lab2
 //
 //  Created by Jon Chaney on 9/21/15.
-//  Copyright (c) 2015 Jon Chaney. All rights reserved.
-//
 
 #include "SpinningWheel.h"
 #include <iostream>
@@ -13,12 +11,13 @@
 
 SpinningWheel::SpinningWheel() : index(0)
 {
-  srand(unsigned(time(nullptr)));    // seed random number
+  // seed random number
+  srand(unsigned(time(nullptr)));
   
-  // puts point values into array
+  // put point values into array
   for(int i = 0, j = 5; i < NUM_VALUES; i++, j+=5)
   {
-    values[i%NUM_VALUES] = j;
+    values[(i+1)%NUM_VALUES] = j;
   }
   
   // randomizes array
@@ -26,53 +25,38 @@ SpinningWheel::SpinningWheel() : index(0)
   int temp = 0;
   for(int i = 0; i < NUM_VALUES; i++)
   {
-    randNum = getRand(0,19);
-    temp = values[i% NUM_VALUES];
-    values[i% NUM_VALUES] = values[randNum% NUM_VALUES];
-    values[randNum% NUM_VALUES] = temp;
+    // get random number between 0 and 19
+    randNum = rand() % 20;
+    // swap
+    temp = values[(i + 1) % NUM_VALUES];
+    values[(i + 1) % NUM_VALUES] = values[randNum % NUM_VALUES];
+    values[randNum % NUM_VALUES] = temp;
   }
 }
 
-// advances the wheel a random number of positions (a random number from 22 to 42), displaying the value
-// at each position as the wheel spins, and returning the value of the wheel when it has stopped spinning.
 int SpinningWheel::spin()
 {
   
-  int randNum = getRand(22,42);   // get random number between 22 and 42
-  int finalNum = 0;               // value that wheel ends on
-  int count = 0;                  // create new line after 20 values printed
+  int randNum = 22 + rand() % (42 - 22);    // get random number between 22 and 42
+  int finalNum = 0;                         // value that wheel ends on
+  int count = 0;
   
-  while(index < randNum)
+  for(int i = index; i < randNum; i++)
   {
-    cout << values[index % NUM_VALUES] << " ";
-    finalNum = values[index % NUM_VALUES];
-    index++;
-    count++;
+    cout << values[(i + 1) % NUM_VALUES] << " ";
     
-    // print value in correct format
-    if(count % NUM_VALUES==0)
+    if((count + 1) % NUM_VALUES == 0)
     {
       cout << endl;
       cout << "\t\t\t\t";
     }
+    count++;
   }
-  index = index % NUM_VALUES; // update index
+  
+  finalNum = values[count % NUM_VALUES];
   
   return finalNum;
 }
-// helper function to get random number between a range
-int SpinningWheel::getRand(int floor, int ceiling)
-{
-  int randNum = 0;
-  randNum = rand() % ceiling + floor;
-  
-  return randNum;
-}
-// test function
-void SpinningWheel::print()
-{
-  for(int i = 0; i < NUM_VALUES; i++)
-  {
-    cout << values[i] << " ";
-  }
-}
+
+
+

@@ -3,8 +3,6 @@
 //  lab2
 //
 //  Created by Jon Chaney on 9/21/15.
-//  Copyright (c) 2015 Jon Chaney. All rights reserved.
-//
 
 #include <iostream>
 #include <cctype>     // for tolower()
@@ -69,7 +67,7 @@ char playGame()
             cout << "\nTotal Points: Over 100\n";
           }
           else
-            cout << "\nTotal Points:  " << players[i].totalPoints() << endl;
+            cout << "\nTotal Points:   " << players[i].totalPoints() << endl;
         }
       }
   } // end for
@@ -81,11 +79,11 @@ char playGame()
     int winnerIndex = 0;    // winner of game
     if(players[0].totalPoints() == players[1].totalPoints() && players[0].totalPoints() == players[2].totalPoints())
       cout << "Everyone wins!";
-    else if(players[0].totalPoints() == players[1].totalPoints())
+    else if(players[0].totalPoints() == players[1].totalPoints() && players[0].totalPoints() > players[2].totalPoints())
       cout << "Player 1 and 2 win!";
-    else if(players[0].totalPoints() == players[2].totalPoints())
+    else if(players[0].totalPoints() == players[2].totalPoints() && players[0].totalPoints() > players[1].totalPoints())
       cout << "Player 1 and 3 win!";
-    else if(players[1].totalPoints() == players[2].totalPoints())
+    else if(players[1].totalPoints() == players[2].totalPoints() && players[1].totalPoints() > players[0].totalPoints())
       cout << "Player 2 and 3 win!";
     else
     {
