@@ -39,6 +39,7 @@ char playGame()
   Player players[NUM_PLAYERS]; // array of players
   char choice;                 // continue gameplay
   SpinningWheel gamewheel;
+  bool playerThree = false;    // check if player three wins early
   
   // spin wheel for each player
   for(int i = 0;i < NUM_PLAYERS;i++)
@@ -49,39 +50,56 @@ char playGame()
     players[i].spin(gamewheel);
     cout << "\nPoints so far:  " << players[i].totalPoints();
   
-    // skip for third player if first two players go over 100
-    if(players[0].totalPoints() > 100 && players[1].totalPoints() > 100);
-    else if(spinAgain())
+    // if first two players are over 100 the third player does not spin a second time and wins
+    if(players[0].totalPoints() > 100 && players[1].totalPoints() > 100)
     {
-      cout << "Second Spin: \t";
-      players[i].spin(gamewheel);
-      // test if total points is over 100
-      if(players[i].totalPoints() > 100)
-      {
-        cout << "\nTotal Points: Over 100";
-        
-      }
-      else
-        cout << "\nTotal Points:  " << players[i].totalPoints() << endl;
+      playerThree = true;
+      cout << "\nPlayer 3 wins!";
     }
-  }
+    // if current player is less than or equal to 100 they can choose to spin again
+    else if(players[i].totalPoints() < 100)
+    {
+        if(spinAgain())
+        {
+          cout << "Second Spin: \t";
+          players[i].spin(gamewheel);
+          // test if total points is over 100
+          if(players[i].totalPoints() > 100)
+          {
+            cout << "\nTotal Points: Over 100\n";
+          }
+          else
+            cout << "\nTotal Points:  " << players[i].totalPoints() << endl;
+        }
+      }
+  } // end for
   
-  // find game winner
-  int max = players[0].totalPoints();    // first player gets max value
-  // find which player has the most points
-  for(int i = 1; i < NUM_PLAYERS; i++)
-   {
-     if(players[i].totalPoints() > max)
-     {
-       max = players[i].totalPoints();
-     }
-   }
-  
-  // print winner of game
-  for(int i = 0; i < NUM_PLAYERS; i++)
+  // if player three did not win already, check for tie and find winner
+  if(!playerThree)
   {
-    if(players[i].totalPoints() == max)
-      cout << "\nPlayer " << i+1 << " wins!";
+    int winner = 0;         // highest score
+    int winnerIndex = 0;    // winner of game
+    if(players[0].totalPoints() == players[1].totalPoints() && players[0].totalPoints() == players[2].totalPoints())
+      cout << "Everyone wins!";
+    else if(players[0].totalPoints() == players[1].totalPoints())
+      cout << "Player 1 and 2 win!";
+    else if(players[0].totalPoints() == players[2].totalPoints())
+      cout << "Player 1 and 3 win!";
+    else if(players[1].totalPoints() == players[2].totalPoints())
+      cout << "Player 2 and 3 win!";
+    else
+    {
+      // find which player has the most points
+      for(int i = 0; i < NUM_PLAYERS; i++)
+      {
+        if(players[i].totalPoints() <= 100 && winner < players[i].totalPoints())
+        {
+          winner = players[i].totalPoints();
+          winnerIndex = i;
+        }
+      }
+     cout << "\nPlayer " << winnerIndex+1 << " wins!";
+    }
   }
   
   do

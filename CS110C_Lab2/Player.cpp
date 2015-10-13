@@ -22,3 +22,4 @@ int Player::totalPoints() const
 {
   return points;
 }
+

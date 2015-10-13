@@ -13,7 +13,7 @@
 
 SpinningWheel::SpinningWheel() : index(0)
 {
-  srand(time(nullptr));    // seed random number
+  srand(unsigned(time(nullptr)));    // seed random number
   
   // puts point values into array
   for(int i = 0, j = 5; i < NUM_VALUES; i++, j+=5)
@@ -50,7 +50,7 @@ int SpinningWheel::spin()
     count++;
     
     // print value in correct format
-    if(index % NUM_VALUES==0)
+    if(count % NUM_VALUES==0)
     {
       cout << endl;
       cout << "\t\t\t\t";
