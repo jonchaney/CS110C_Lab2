@@ -19,9 +19,15 @@ private:
 public:
         // default constructor intializes points to zero
         Player();
+        // +spin(in gamewheel: SpinningWheel)
         // player spins wheel, total player points is updated
+        // pre  : SpinningWheel
+        // post : updates points with new total
         void spin(SpinningWheel &gameWheel);
+        // +totalPoints() : integer {query}
         // returns total number of points by player so far
+        // pre  : none
+        // post : return total number of points
         int totalPoints() const;
 };
 

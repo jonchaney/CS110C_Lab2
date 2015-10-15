@@ -4,7 +4,7 @@
 //
 //  Created by Jon Chaney on 9/21/15.
 
-#include "Player.h" // header file
+#include "Player.h"
 #include "SpinningWheel.h"
 
 Player::Player() : points(0)

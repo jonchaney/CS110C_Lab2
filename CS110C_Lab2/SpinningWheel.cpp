@@ -6,7 +6,6 @@
 
 #include "SpinningWheel.h"
 #include <iostream>
-#include <stdlib.h>
 #include <ctime>
 
 SpinningWheel::SpinningWheel() : index(0)
@@ -27,7 +26,7 @@ SpinningWheel::SpinningWheel() : index(0)
   {
     // get random number between 0 and 19
     randNum = rand() % 20;
-    // swap
+    // swap values
     temp = values[(i + 1) % NUM_VALUES];
     values[(i + 1) % NUM_VALUES] = values[randNum % NUM_VALUES];
     values[randNum % NUM_VALUES] = temp;
@@ -39,24 +38,28 @@ int SpinningWheel::spin()
   
   int randNum = 22 + rand() % (42 - 22);    // get random number between 22 and 42
   int finalNum = 0;                         // value that wheel ends on
-  int count = 0;
+  int count = 1;                            // count for formatting
   
-  for(int i = index; i < randNum; i++)
+  // print gamewheel values
+  for(int i = 0; i < randNum; i++)
   {
-    cout << values[(i + 1) % NUM_VALUES] << " ";
-    
-    if((count + 1) % NUM_VALUES == 0)
+    cout << values[(index + 1) % NUM_VALUES] << " ";
+    // after printing 20 values, end line and indent
+    if(count % NUM_VALUES == 0)
     {
       cout << endl;
       cout << "\t\t\t\t";
     }
     count++;
+    index++;
   }
   
-  finalNum = values[count % NUM_VALUES];
+  finalNum = values[index % NUM_VALUES];
   
   return finalNum;
 }
+
+
 
 
 
